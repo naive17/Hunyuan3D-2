@@ -109,7 +109,7 @@
             window_state.textures.push(modelViewer.model.materials[i].pbrMetallicRoughness.baseColorTexture.texture);
         }
         window_state.exposure = modelViewer.exposure;
-        modelViewer.environmentImage = '/static/env_maps/gradient.jpg';
+        modelViewer.environmentImage = '../env_maps/gradient.jpg';
         for (let i = 0; i < modelViewer.model.materials.length; i++) {
             modelViewer.model.materials[i].pbrMetallicRoughness.baseColorTexture.setTexture(null);
         }
@@ -123,7 +123,7 @@
         geometryButton.classList.remove('checked');
         let modelViewer = document.getElementById('modelviewer');
         if (modelViewer.model.materials[0].pbrMetallicRoughness.baseColorTexture.texture !== null) return;
-        modelViewer.environmentImage = '/static/env_maps/white.jpg';
+        modelViewer.environmentImage = '../env_maps/white.jpg';
         for (let i = 0; i < modelViewer.model.materials.length; i++) {
             modelViewer.model.materials[i].pbrMetallicRoughness.baseColorTexture.setTexture(window_state.textures[i]);
         }

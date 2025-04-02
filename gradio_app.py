@@ -121,9 +121,9 @@ def build_model_viewer_html(save_folder, height=660, width=790, textured=False):
         f.write(template_html)
 
     rel_path = os.path.relpath(output_html_path, SAVE_DIR)
-    iframe_tag = f'<iframe src="/static/{rel_path}" height="{height}" width="100%" frameborder="0"></iframe>'
+    iframe_tag = f'<iframe src="gradio_api/file=gradio_cache/{rel_path}" height="{height}" width="100%" frameborder="0"></iframe>'
     print(
-        f'Find html file {output_html_path}, {os.path.exists(output_html_path)}, relative HTML path is /static/{rel_path}')
+        f'Find html file {output_html_path}, {os.path.exists(output_html_path)}, relative HTML path is /gradio_cache/{rel_path}')
 
     return f"""
         <div style='height: {height}; width: 100%;'>
@@ -751,5 +751,6 @@ if __name__ == '__main__':
     if args.low_vram_mode:
         torch.cuda.empty_cache()
     demo = build_app()
-    app = gr.mount_gradio_app(app, demo, path="/")
-    uvicorn.run(app, host=args.host, port=args.port, workers=1)
+    demo.launch(share=True, allowed_paths=["./"])
+    #app = gr.mount_gradio_app(app, demo, path="/")
+    #uvicorn.run(app, host=args.host, port=args.port, workers=1)
