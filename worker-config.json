@@ -1,0 +1,11 @@
+{
+    "versions": {
+        "0.4.2": {
+            "imageName": "naive17/hunyuan3d-2-runpod-serverless:0.0.3",
+            "minimumCudaVersion": "12.8.1",
+            "categories": []
+        }
+    },
+    "schema": {
+    }
+}

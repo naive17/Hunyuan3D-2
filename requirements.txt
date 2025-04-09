@@ -38,3 +38,4 @@ rembg
 onnxruntime
 #gevent
 #geventhttpclient
+runpod

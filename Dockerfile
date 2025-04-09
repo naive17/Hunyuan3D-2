@@ -50,10 +50,18 @@ RUN python3 setup.py build_ext --inplace && python3 setup.py install
 
 # Install Gradio
 WORKDIR /app/Hunyuan3D-2
-RUN python3 -m pip install --no-cache-dir gradio sentencepiece
 
-# Expose port 8080
-EXPOSE 8080
+COPY cache_models.py /app/Hunyuan3D-2/cache_models.py
 
+RUN python cache_models.py
+
+#RUN python3 -m pip install --no-cache-dir gradio sentencepiece
+
+RUN python3 -m pip install runpod
+
+COPY handler.py /app/Hunyuan3D-2/handler.py
+COPY worker-config.json /app/Hunyuan3D-2/worker-config.json
+
+CMD python -u handler.py
 # Run Gradio app on custom port
-CMD ["bash", "-c", "python3 gradio_app.py --enable_t23d --host 0.0.0.0 --port 8080 --low_vram_mode --enable_flashvdm"]
+#CMD ["bash", "-c", "python3 gradio_app.py --enable_t23d --host 0.0.0.0 --port 8080 --low_vram_mode --enable_flashvdm"]
